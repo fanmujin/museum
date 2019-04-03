@@ -1,17 +1,12 @@
 package com.muzi.museum.dao;
 
 import com.muzi.museum.bean.DDoc;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 public interface DDocMapper {
-    int deleteByPrimaryKey(Integer id);
 
-    int insert(DDoc record);
-
-    int insertSelective(DDoc record);
-
-    DDoc selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(DDoc record);
-
-    int updateByPrimaryKey(DDoc record);
+    List<DDoc> findAll();
+    int insert(DDoc dDoc);
 }
