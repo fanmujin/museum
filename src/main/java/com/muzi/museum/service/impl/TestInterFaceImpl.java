@@ -1,14 +1,15 @@
 package com.muzi.museum.service.impl;
 
 import com.muzi.museum.bean.User;
-import com.muzi.museum.dao.UserDao;
+import com.muzi.museum.dao.UserMapper;
 import com.muzi.museum.service.TestInterFace;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class TestInterFaceImpl  implements TestInterFace {
-    @Autowired UserDao userDao;
+    @Autowired
+    UserMapper userMapper;
       public int testInterFace(){
 
           return 1;
@@ -20,6 +21,6 @@ public class TestInterFaceImpl  implements TestInterFace {
      //插入
     @Override
     public int insertUser(String username, String password) {
-        return userDao.insert(username,password);
+        return userMapper.insert(username,password);
     }
 }

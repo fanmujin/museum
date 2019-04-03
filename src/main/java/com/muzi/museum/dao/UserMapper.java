@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 @Mapper
-public interface UserDao {
+public interface UserMapper {
      @Insert("INSERT INTO USERINFO (username,password) VALUE (#{username},#{password})" )
     int insert (@Param("username")String username,@Param("password")String password);
 }
