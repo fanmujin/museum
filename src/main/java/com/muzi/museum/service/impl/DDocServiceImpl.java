@@ -21,4 +21,19 @@ public class DDocServiceImpl implements DDocService {
     public int insert(DDoc dDoc) {
         return dDocMapper.insert(dDoc);
     }
+
+    @Override
+    public DDoc selectByPrimaryKey(int id) {
+        return dDocMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public int deleteByPrimaryKey(int id) {
+        return dDocMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public int updateByPrimaryKey(DDoc dDoc) {
+        return dDocMapper.updateByPrimaryKey(dDoc);
+    }
 }

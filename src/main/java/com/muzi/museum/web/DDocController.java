@@ -33,4 +33,22 @@ public class DDocController {
      //根据插入的结果返回对应的请求结果
      return result>0 ? "SUCCESS" : "error";
  }
+   @ApiOperation("通过id查询")
+    @GetMapping("get/{id}")
+    public DDoc get(@PathVariable int id){
+     DDoc dDoc = dDocService.selectByPrimaryKey(id);
+     return dDoc;
+   }
+   @ApiOperation("通过id删除")
+    @GetMapping("deleteByPrimaryKey/{id}")
+    public String  deleteByPrimaryKey(@PathVariable int id){
+     int result = dDocService.deleteByPrimaryKey(id);
+     return result > 0 ? "SUCCESS" : "ERROR";
+   }
+   @ApiOperation("通过id修改")
+    @PostMapping("updateByPrimaryKey")
+    public String updateByPrimaryKey( DDoc dDoc){
+     int result = dDocService.updateByPrimaryKey(dDoc);
+     return result > 0 ? "SUCCESS" : "ERROR";
+   }
 }
