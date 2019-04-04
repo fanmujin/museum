@@ -7,7 +7,18 @@ spring:
       url: jdbc:mysql://127.0.0.1:3306/museum
       username: root
       password: root
-
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 0
+    password:
+    jedis:
+      pool:
+        max-active: 1000
+        max-wait: -1
+        max-idle: 10
+        min-idle: 2
+    timeout: 2000
 mybatis:
   mapper-locations: classpath:mapping/*.xml
   type-aliases-package: com.muzi.museum.bean
@@ -19,3 +30,4 @@ msg-config:
 
 thymeleaf:
   cache: false
+

@@ -5,6 +5,7 @@ import com.muzi.museum.dao.DDocMapper;
 import com.muzi.museum.service.DDocService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import springfox.documentation.annotations.Cacheable;
 
 import java.util.List;
 
@@ -13,16 +14,19 @@ public class DDocServiceImpl implements DDocService {
     @Autowired DDocMapper dDocMapper;
 
     @Override
+    @Cacheable(value = "findAll")
     public List<DDoc> findAll() {
         return dDocMapper.findAll();
     }
 
     @Override
+
     public int insert(DDoc dDoc) {
         return dDocMapper.insert(dDoc);
     }
 
     @Override
+    @Cacheable(value = "selectByPrimaryKey")
     public DDoc selectByPrimaryKey(int id) {
         return dDocMapper.selectByPrimaryKey(id);
     }
