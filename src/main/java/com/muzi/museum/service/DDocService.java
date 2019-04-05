@@ -14,4 +14,7 @@ public interface DDocService {
   public int deleteByPrimaryKey(int id);
 
   public int updateByPrimaryKey(DDoc dDoc);
+
+
+
 }

@@ -36,4 +36,5 @@ public class ActiveServiceImpl implements ActiveService {
     public int updateByPrimaryKey(Active active) {
         return activeMapper.updateByPrimaryKey(active);
     }
+
 }

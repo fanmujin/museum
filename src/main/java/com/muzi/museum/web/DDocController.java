@@ -5,15 +5,16 @@ import com.muzi.museum.service.DDocService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
 @RequestMapping("/DDoc")
 @Api(tags = "文档管理")
 public class DDocController {
-    //private final static String TAG="DDocController";
+  @Autowired
+  private StringRedisTemplate stringRedisTemplate;
  @Autowired
     DDocService dDocService;
  @GetMapping("findAll")
@@ -51,4 +52,5 @@ public class DDocController {
      int result = dDocService.updateByPrimaryKey(dDoc);
      return result > 0 ? "SUCCESS" : "ERROR";
    }
+
 }
