@@ -1,6 +1,7 @@
 package com.muzi.museum.web;
 
 import com.muzi.museum.bean.DDoc;
+import com.muzi.museum.dao.result.Result;
 import com.muzi.museum.service.DDocService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -39,6 +40,12 @@ public class DDocController {
     public DDoc get(@PathVariable int id){
      DDoc dDoc = dDocService.selectByPrimaryKey(id);
      return dDoc;
+   }
+   @ApiOperation("Result 通过ID查询")
+   @GetMapping("getDDoc/{id}")
+   public Result getDDoc(@PathVariable int  id){
+     DDoc dDoc = dDocService.selectByPrimaryKey(id);
+     return  Result.success(dDoc);
    }
    @ApiOperation("通过id删除")
     @GetMapping("deleteByPrimaryKey/{id}")

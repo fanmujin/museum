@@ -1,6 +1,7 @@
 package com.muzi.museum.bean;
 
-public class DDoc {
+
+public class DDoc  {
     private Integer id;
 
     private String title;
