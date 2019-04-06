@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.muzi.museum.dao.CultureMapper" >
+  <resultMap id="BaseResultMap" type="com.muzi.museum.bean.Culture" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="culture_name" property="cultureName" jdbcType="VARCHAR" />
+    <result column="type_id" property="typeId" jdbcType="INTEGER" />
+    <result column="address_id" property="addressId" jdbcType="INTEGER" />
+    <result column="culture_description" property="cultureDescription" jdbcType="VARCHAR" />
+    <result column="culture_level" property="cultureLevel" jdbcType="VARCHAR" />
+    <result column="culture_picture" property="culturePicture" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="is_delete" property="isDelete" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, culture_name, type_id, address_id, culture_description, culture_level, culture_picture, 
+    create_time, update_time, create_user, update_user, is_delete
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from culture
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from culture
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.muzi.museum.bean.Culture" >
+    insert into culture (id, culture_name, type_id, 
+      address_id, culture_description, culture_level, 
+      culture_picture, create_time, update_time, 
+      create_user, update_user, is_delete
+      )
+    values (#{id,jdbcType=INTEGER}, #{cultureName,jdbcType=VARCHAR}, #{typeId,jdbcType=INTEGER}, 
+      #{addressId,jdbcType=INTEGER}, #{cultureDescription,jdbcType=VARCHAR}, #{cultureLevel,jdbcType=VARCHAR}, 
+      #{culturePicture,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, #{isDelete,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.muzi.museum.bean.Culture" >
+    insert into culture
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cultureName != null" >
+        culture_name,
+      </if>
+      <if test="typeId != null" >
+        type_id,
+      </if>
+      <if test="addressId != null" >
+        address_id,
+      </if>
+      <if test="cultureDescription != null" >
+        culture_description,
+      </if>
+      <if test="cultureLevel != null" >
+        culture_level,
+      </if>
+      <if test="culturePicture != null" >
+        culture_picture,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cultureName != null" >
+        #{cultureName,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null" >
+        #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="addressId != null" >
+        #{addressId,jdbcType=INTEGER},
+      </if>
+      <if test="cultureDescription != null" >
+        #{cultureDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="cultureLevel != null" >
+        #{cultureLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="culturePicture != null" >
+        #{culturePicture,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.muzi.museum.bean.Culture" >
+    update culture
+    <set >
+      <if test="cultureName != null" >
+        culture_name = #{cultureName,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null" >
+        type_id = #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="addressId != null" >
+        address_id = #{addressId,jdbcType=INTEGER},
+      </if>
+      <if test="cultureDescription != null" >
+        culture_description = #{cultureDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="cultureLevel != null" >
+        culture_level = #{cultureLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="culturePicture != null" >
+        culture_picture = #{culturePicture,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.muzi.museum.bean.Culture" >
+    update culture
+    set culture_name = #{cultureName,jdbcType=VARCHAR},
+      type_id = #{typeId,jdbcType=INTEGER},
+      address_id = #{addressId,jdbcType=INTEGER},
+      culture_description = #{cultureDescription,jdbcType=VARCHAR},
+      culture_level = #{cultureLevel,jdbcType=VARCHAR},
+      culture_picture = #{culturePicture,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      is_delete = #{isDelete,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
