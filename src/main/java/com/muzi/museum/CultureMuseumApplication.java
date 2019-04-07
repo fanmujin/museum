@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 @ComponentScan(basePackages = {"com.muzi.museum"})
 @MapperScan({"com.muzi.museum.dao"})
 @EnableCaching//启动缓存
+
 public class CultureMuseumApplication {
     public static void main(String[] args) {
         SpringApplication.run(CultureMuseumApplication.class, args);

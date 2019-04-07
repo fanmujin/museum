@@ -30,11 +30,6 @@ public class Result implements Serializable {
         return result;
     }
 
-    public static Result error(){
-        Result result = new Result();
-        result.setResultCode(ResultCode.RESULE_DATA_NONE);
-        return result;
-    }
 
     public static Result success(Object data) {
         Result result = new Result();
@@ -53,6 +48,11 @@ public class Result implements Serializable {
         Result result = new Result();
         result.setResultCode(resultCode);
         result.setData(data);
+        return result;
+    }
+    public static Result failure() {
+        Result result = new Result();
+      //  result.setResultCode(ResultCode.);
         return result;
     }
 

@@ -142,6 +142,13 @@
             <version>1.18.6</version>
         </dependency>
 
+       <!-- alibaba连接池-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.0.11</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -178,6 +185,7 @@
                     <fork>true</fork>
                 </configuration>
             </plugin>
+            <!-- 自动插入时间-->
 
         </plugins>
     </build>

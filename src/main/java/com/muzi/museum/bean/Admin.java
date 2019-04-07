@@ -1,5 +1,10 @@
 package com.muzi.museum.bean;
 
+import lombok.Data;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+
+import javax.persistence.Column;
 import java.util.Date;
 
 public class Admin {
@@ -13,9 +18,14 @@ public class Admin {
 
     private Integer adminTel;
 
+    @CreatedDate
+    @Column(name = "create_time")
     private Date createTime;
 
+    @LastModifiedDate
+    @Column(name = "update_time")
     private Date updateTime;
+
 
     private String createUser;
 

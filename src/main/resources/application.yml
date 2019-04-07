@@ -1,6 +1,13 @@
 server:
   port: 8080
 spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
   datasource:
       name: test
       driver-class-name: com.mysql.jdbc.Driver
