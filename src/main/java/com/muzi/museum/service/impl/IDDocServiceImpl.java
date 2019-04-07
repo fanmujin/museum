@@ -2,11 +2,10 @@ package com.muzi.museum.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.muzi.museum.utils.JSONUtil;
 import org.slf4j.Logger;
 import com.muzi.museum.bean.DDoc;
 import com.muzi.museum.dao.DDocMapper;
-import com.muzi.museum.service.DDocService;
+import com.muzi.museum.service.IDDocService;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -16,13 +15,13 @@ import java.util.List;
 
 
 @Service
-public class DDocServiceImpl implements DDocService {
+public class IDDocServiceImpl implements IDDocService {
     @Autowired DDocMapper dDocMapper;
 
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(DDocServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(IDDocServiceImpl.class);
     @Override
     public List<DDoc> findAll() {
         return dDocMapper.findAll();

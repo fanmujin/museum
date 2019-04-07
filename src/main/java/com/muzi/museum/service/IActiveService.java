@@ -4,7 +4,7 @@ import com.muzi.museum.bean.Active;
 
 import java.util.List;
 
-public interface ActiveService {
+public interface IActiveService {
     public List<Active> findAll();
 
     public Active seleteByPrimaryKey(int id);

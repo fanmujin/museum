@@ -30,6 +30,12 @@ public class Result implements Serializable {
         return result;
     }
 
+    public static Result error(){
+        Result result = new Result();
+        result.setResultCode(ResultCode.RESULE_DATA_NONE);
+        return result;
+    }
+
     public static Result success(Object data) {
         Result result = new Result();
         result.setResultCode(ResultCode.SUCCESS);
@@ -49,6 +55,7 @@ public class Result implements Serializable {
         result.setData(data);
         return result;
     }
+
 
     public void setResultCode(ResultCode code) {
         this.code = code.code();

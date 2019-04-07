@@ -2,14 +2,14 @@ package com.muzi.museum.service.impl;
 
 import com.muzi.museum.bean.Active;
 import com.muzi.museum.dao.ActiveMapper;
-import com.muzi.museum.service.ActiveService;
+import com.muzi.museum.service.IActiveService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class ActiveServiceImpl implements ActiveService {
+public class IActiveServiceImpl implements IActiveService {
     @Autowired
     ActiveMapper activeMapper;
     @Override

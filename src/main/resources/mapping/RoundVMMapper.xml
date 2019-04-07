@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.muzi.museum.dao.extend.RoundVMMapper" >
+    <!--定义结果集 -->
+    <resultMap id="BaseResultMap" type="com.muzi.museum.bean.extend.RoundVM" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="round_name" property="roundName" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+        <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+        <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+        <result column="is_delete" property="isDelete" jdbcType="CHAR" />
+        <collection column="id" property="round_pictures"  ofType="com.muzi.museum.bean.Round_picture" javaType="ArrayList"
+                    select="selectRound_pictureByRoundId">
+        </collection>
+
+    </resultMap>
+    <sql  id = "Base_Column_List">
+          id, round_name, create_time, update_time, create_user, update_user, is_delete
+    </sql>
+    <select id="selectRound_pictureByRoundId"
+            parameterType="int"
+            resultType="com.muzi.museum.bean.Round_picture">
+          select * from round_picture where  round_id = #{id}
+    </select>
+
+    <!-- select 所有的轮播图-->
+    <select id="selectAll" resultMap="BaseResultMap">
+       select
+       <include refid="Base_Column_List"/>
+       from  round
+    </select>
+</mapper>
