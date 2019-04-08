@@ -148,6 +148,13 @@
             <artifactId>druid</artifactId>
             <version>1.0.11</version>
         </dependency>
+        <!-- jpa-->
+
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>2.1.5.RELEASE</version>
+        </dependency>
 
     </dependencies>
 
@@ -185,7 +192,6 @@
                     <fork>true</fork>
                 </configuration>
             </plugin>
-            <!-- 自动插入时间-->
 
         </plugins>
     </build>
