@@ -2,9 +2,13 @@ package com.muzi.museum.bean;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
-import javax.persistence.Column;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import javax.persistence.EntityListeners;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.util.Date;
 
+@EntityListeners(AuditingEntityListener.class)
 public class Admin {
     private Integer id;
 
@@ -17,11 +21,11 @@ public class Admin {
     private Integer adminTel;
 
     @CreatedDate
-    @Column(name = "create_time")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
 
     @LastModifiedDate
-    @Column(name = "update_time")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date updateTime;
 
 

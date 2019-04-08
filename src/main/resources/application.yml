@@ -5,6 +5,7 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+    database: mysql
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
