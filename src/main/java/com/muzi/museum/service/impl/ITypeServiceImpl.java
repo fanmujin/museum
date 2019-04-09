@@ -1,5 +1,6 @@
 package com.muzi.museum.service.impl;
 
+
 import com.muzi.museum.bean.Type_picture;
 import com.muzi.museum.bean.Typee;
 import com.muzi.museum.bean.extend.TypeeVM;
@@ -67,10 +68,17 @@ public class ITypeServiceImpl  implements ITypeService {
                * 2.1 修改名俗图片信息(添加，修改，删除)
                * 3.1 删除原来的名俗照片
                */
-
-               /*
+                type_pictureMapper.deleteByType_id(typee.getId());
+                /*
                * 3.2 重新添加图片
                * */
+            for (Type_picture picture : type_pictures) {
+                //保存名俗类别的id
+                picture.setTypeId(typee.getId());
+                System.out.println(typee.getId());
+                //保存名俗类别的图片
+                type_pictureMapper.insert(picture);
+               }
             }
         }
     }

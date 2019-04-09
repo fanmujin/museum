@@ -24,6 +24,12 @@
     delete from type_picture
     where id = #{id,jdbcType=INTEGER}
   </delete>
+
+  <delete id="deleteByType_id" parameterType="java.lang.Integer" >
+    delete from type_picture
+    where type_id = #{id,jdbcType=INTEGER}
+  </delete>
+
   <insert id="insert" parameterType="com.muzi.museum.bean.Type_picture" >
     insert into type_picture (id, picture_url, type_id, 
       create_time, update_time, create_user, 
