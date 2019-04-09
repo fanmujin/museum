@@ -16,4 +16,6 @@ public interface Type_pictureMapper {
     int updateByPrimaryKey(Type_picture record);
 
     int deleteByType_id (Integer id);
+
+
 }

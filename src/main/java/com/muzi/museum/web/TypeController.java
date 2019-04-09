@@ -28,13 +28,6 @@ public class TypeController {
         List<TypeeVM> list = iTypeService.findAll();
         return Result.success(list);
     }
-    //插入类别
-    @PostMapping("insertType")
-    @ApiOperation(value = "插入名俗类别")
-    public String insertType(Typee typee){
-        int re = iTypeService.insert(typee);
-        return re > 0 ? "SUCCESS" : "ERROR";
-    }
     //保存获更新名俗的类别
     @PostMapping("saveOrupdateType")
     @ApiOperation(value = "保存或更新名俗类别的接口")
@@ -45,8 +38,13 @@ public class TypeController {
       }catch (Exception e){
           e.printStackTrace();
           return e.getMessage();
-
       }
-
+    }
+    //删除名俗类别
+    @GetMapping("deleteById")
+    @ApiOperation(value = "通过id删除名俗类别")
+    public String deleteById(int id){
+       int re = iTypeService.delectById(id);
+        return re > 0 ? "SUCCESS" : "ERROE";
     }
 }

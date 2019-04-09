@@ -8,9 +8,9 @@ import com.muzi.museum.dao.Type_pictureMapper;
 import com.muzi.museum.dao.TypeeMapper;
 import com.muzi.museum.dao.extend.TypeeVMMapper;
 import com.muzi.museum.service.ITypeService;
+import com.muzi.museum.utils.CurrentTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -26,11 +26,6 @@ public class ITypeServiceImpl  implements ITypeService {
     public List<TypeeVM> findAll() {
         return typeeVMMapper.selectAll();
     }
-    //插入名俗类别
-    @Override
-    public int insert(Typee typee) {
-        return typeeMapper.insert(typee);
-    }
 
     @Override
     public void saveOrupdateTypeeVM(TypeeVM typeeVM) {
@@ -41,6 +36,8 @@ public class ITypeServiceImpl  implements ITypeService {
         typee.setId(typeeVM.getId());
         typee.setTypeName(typeeVM.getTypeName());
         typee.setTypeDescription(typeeVM.getTypeDescription());
+
+
         //typee 类型对象 ，type_picture 类型图片对象
         // 1.判断保存还是修改
         /*
@@ -50,10 +47,13 @@ public class ITypeServiceImpl  implements ITypeService {
         //当id为空的时候做保存操作
         if (typee.getId() == null){
             //保存名俗类别
+            CurrentTime currentTime = new CurrentTime();
+            typee.setCreateTime(currentTime.getTime());
             typeeMapper.insert(typee);
         for (Type_picture picture : type_pictures) {
             //保存名俗类别的id
             picture.setTypeId(typee.getId());
+            picture.setCreateTime(currentTime.getTime());
             //保存名俗类别的图片
             type_pictureMapper.insert(picture);
         }
@@ -63,6 +63,10 @@ public class ITypeServiceImpl  implements ITypeService {
                /*修改
                * 1.1 修改名俗类别信息
                */
+               //获得当前的时间
+            CurrentTime currentTime = new CurrentTime();
+            //添加当前的时间
+               typee.setUpdateTime(currentTime.getTime());
                typeeMapper.updateByPrimaryKey(typee);
                /*
                * 2.1 修改名俗图片信息(添加，修改，删除)
@@ -74,6 +78,7 @@ public class ITypeServiceImpl  implements ITypeService {
                * */
             for (Type_picture picture : type_pictures) {
                 //保存名俗类别的id
+                picture.setUpdateTime(currentTime.getTime());
                 picture.setTypeId(typee.getId());
                 System.out.println(typee.getId());
                 //保存名俗类别的图片
@@ -81,4 +86,9 @@ public class ITypeServiceImpl  implements ITypeService {
                }
             }
         }
+//删除名俗类别
+    @Override
+    public int delectById(int id) {
+        return typeeMapper.deleteByPrimaryKey(id);
     }
+}

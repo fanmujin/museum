@@ -2,6 +2,8 @@ package com.muzi.museum.dao;
 
 import com.muzi.museum.bean.Institution;
 
+import java.util.List;
+
 public interface InstitutionMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -16,4 +18,6 @@ public interface InstitutionMapper {
     int updateByPrimaryKeyWithBLOBs(Institution record);
 
     int updateByPrimaryKey(Institution record);
+
+    List<Institution> selectAll();
 }
