@@ -1,6 +1,6 @@
 package com.muzi.museum.web;
 
-import com.muzi.museum.bean.Type_picture;
+import com.muzi.museum.bean.Typee;
 import com.muzi.museum.bean.extend.TypeeVM;
 import com.muzi.museum.dao.result.Result;
 import com.muzi.museum.service.ITypeService;
@@ -8,6 +8,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,5 +27,26 @@ public class TypeController {
     public Result finAllType(){
         List<TypeeVM> list = iTypeService.findAll();
         return Result.success(list);
+    }
+    //插入类别
+    @PostMapping("insertType")
+    @ApiOperation(value = "插入名俗类别")
+    public String insertType(Typee typee){
+        int re = iTypeService.insert(typee);
+        return re > 0 ? "SUCCESS" : "ERROR";
+    }
+    //保存获更新名俗的类别
+    @PostMapping("saveOrupdateType")
+    @ApiOperation(value = "保存或更新名俗类别的接口")
+    public String saveOrupdateType(TypeeVM typeeVM){
+      try{
+          iTypeService.saveOrupdateTypeeVM(typeeVM);
+          return "Success";
+      }catch (Exception e){
+          e.printStackTrace();
+          return e.getMessage();
+
+      }
+
     }
 }

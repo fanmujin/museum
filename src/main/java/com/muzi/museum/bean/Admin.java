@@ -20,12 +20,8 @@ public class Admin {
 
     private Integer adminTel;
 
-    @CreatedDate
-    @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
 
-    @LastModifiedDate
-    @Temporal(TemporalType.TIMESTAMP)
     private Date updateTime;
 
 

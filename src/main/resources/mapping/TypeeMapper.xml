@@ -31,7 +31,7 @@
     delete from typee
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.muzi.museum.bean.Typee" >
+  <insert id="insert"  keyProperty="id" useGeneratedKeys="true" parameterType="com.muzi.museum.bean.Typee" >
     insert into typee (id, type_name, create_time, 
       update_time, create_user, update_user, 
       is_delete, type_description)
