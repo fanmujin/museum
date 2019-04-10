@@ -2,6 +2,8 @@ package com.muzi.museum.dao;
 
 import com.muzi.museum.bean.Relation;
 
+import java.util.List;
+
 public interface RelationMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,6 @@ public interface RelationMapper {
     int updateByPrimaryKeySelective(Relation record);
 
     int updateByPrimaryKey(Relation record);
+
+    List<Relation> selectAll();
 }

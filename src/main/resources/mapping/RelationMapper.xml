@@ -17,6 +17,11 @@
     id, rel_tel, rel_email, rel_weixin, rel_weibo, create_time, update_time, create_user, 
     update_user, is_delete
   </sql>
+  <select resultMap="BaseResultMap" id="selectAll">
+   select
+   <include refid="Base_Column_List"/>
+   from relation
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
