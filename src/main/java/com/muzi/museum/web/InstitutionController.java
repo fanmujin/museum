@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @Api(tags = "学术前沿")
-@RequestMapping("/institution")
+@RequestMapping("/institutions")
 public class InstitutionController {
     @Autowired
     IInstitutionService iInstitutionService;
@@ -38,10 +38,10 @@ public class InstitutionController {
         return re > 0 ? "SUCCESS" : "ERROR";
     }
     //通过id修改学术报告
-    @PostMapping("updateById/{id}")
+    @PostMapping("updateById")
     @ApiOperation(value = "修改学术研究报告")
     public  String updateById(Institutions institutions){
-        int re = iInstitutionService.insert(institutions);
+        int re = iInstitutionService.updateById(institutions);
         return re > 0 ? "SUCCESS" : "ERROR";
     }
     //通过id删除学术报告
