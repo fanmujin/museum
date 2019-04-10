@@ -1,6 +1,7 @@
 package com.muzi.museum.dao;
 
 import com.muzi.museum.bean.Notify;
+import java.util.List;
 
 public interface NotifyMapper {
     int deleteByPrimaryKey(Integer id);
@@ -16,4 +17,6 @@ public interface NotifyMapper {
     int updateByPrimaryKeyWithBLOBs(Notify record);
 
     int updateByPrimaryKey(Notify record);
+
+    List<Notify> selectAll();
 }

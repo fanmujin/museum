@@ -2,6 +2,8 @@ package com.muzi.museum.dao;
 
 import com.muzi.museum.bean.Webb;
 
+import java.util.List;
+
 public interface WebbMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,6 @@ public interface WebbMapper {
     int updateByPrimaryKeySelective(Webb record);
 
     int updateByPrimaryKey(Webb record);
+
+    List<Webb> selectAll();
 }

@@ -20,6 +20,10 @@
     id, s_vison, s_name, s_copyright, s_code, s_date, s_admin_login, s_tel, create_time, 
     update_time, create_user, update_user, is_delete
   </sql>
+  <select id="selectAll" resultMap="BaseResultMap">
+select <include refid="Base_Column_List"/>
+from ssystem
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
