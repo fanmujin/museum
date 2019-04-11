@@ -2,26 +2,22 @@ package com.muzi.museum.bean;
 
 import java.util.Date;
 
-public class Institution {
+public class CultureDisplay {
     private Integer id;
 
-    private String reportName;
+    private Integer cultureId;
 
-    private String reportAuthor;
-
-    private Date reportTime;
+    private Integer displayId;
 
     private Date createTime;
 
-    private Date updateTime;
+    private Date updatTime;
 
     private String createUser;
 
     private String updateUser;
 
     private String isDelete;
-
-    private String reportContend;
 
     public Integer getId() {
         return id;
@@ -31,28 +27,20 @@ public class Institution {
         this.id = id;
     }
 
-    public String getReportName() {
-        return reportName;
+    public Integer getCultureId() {
+        return cultureId;
     }
 
-    public void setReportName(String reportName) {
-        this.reportName = reportName == null ? null : reportName.trim();
+    public void setCultureId(Integer cultureId) {
+        this.cultureId = cultureId;
     }
 
-    public String getReportAuthor() {
-        return reportAuthor;
+    public Integer getDisplayId() {
+        return displayId;
     }
 
-    public void setReportAuthor(String reportAuthor) {
-        this.reportAuthor = reportAuthor == null ? null : reportAuthor.trim();
-    }
-
-    public Date getReportTime() {
-        return reportTime;
-    }
-
-    public void setReportTime(Date reportTime) {
-        this.reportTime = reportTime;
+    public void setDisplayId(Integer displayId) {
+        this.displayId = displayId;
     }
 
     public Date getCreateTime() {
@@ -63,12 +51,12 @@ public class Institution {
         this.createTime = createTime;
     }
 
-    public Date getUpdateTime() {
-        return updateTime;
+    public Date getUpdatTime() {
+        return updatTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
+    public void setUpdatTime(Date updatTime) {
+        this.updatTime = updatTime;
     }
 
     public String getCreateUser() {
@@ -93,13 +81,5 @@ public class Institution {
 
     public void setIsDelete(String isDelete) {
         this.isDelete = isDelete == null ? null : isDelete.trim();
-    }
-
-    public String getReportContend() {
-        return reportContend;
-    }
-
-    public void setReportContend(String reportContend) {
-        this.reportContend = reportContend == null ? null : reportContend.trim();
     }
 }

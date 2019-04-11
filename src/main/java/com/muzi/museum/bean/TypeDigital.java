@@ -2,14 +2,12 @@ package com.muzi.museum.bean;
 
 import java.util.Date;
 
-public class Display {
+public class TypeDigital {
     private Integer id;
 
-    private String displayTitle;
+    private Integer typeeId;
 
-    private Date diapalyStartdate;
-
-    private Date displayEnddate;
+    private Integer digitalId;
 
     private Date createTime;
 
@@ -21,8 +19,6 @@ public class Display {
 
     private String isDelete;
 
-    private String displayContend;
-
     public Integer getId() {
         return id;
     }
@@ -31,28 +27,20 @@ public class Display {
         this.id = id;
     }
 
-    public String getDisplayTitle() {
-        return displayTitle;
+    public Integer getTypeeId() {
+        return typeeId;
     }
 
-    public void setDisplayTitle(String displayTitle) {
-        this.displayTitle = displayTitle == null ? null : displayTitle.trim();
+    public void setTypeeId(Integer typeeId) {
+        this.typeeId = typeeId;
     }
 
-    public Date getDiapalyStartdate() {
-        return diapalyStartdate;
+    public Integer getDigitalId() {
+        return digitalId;
     }
 
-    public void setDiapalyStartdate(Date diapalyStartdate) {
-        this.diapalyStartdate = diapalyStartdate;
-    }
-
-    public Date getDisplayEnddate() {
-        return displayEnddate;
-    }
-
-    public void setDisplayEnddate(Date displayEnddate) {
-        this.displayEnddate = displayEnddate;
+    public void setDigitalId(Integer digitalId) {
+        this.digitalId = digitalId;
     }
 
     public Date getCreateTime() {
@@ -93,13 +81,5 @@ public class Display {
 
     public void setIsDelete(String isDelete) {
         this.isDelete = isDelete == null ? null : isDelete.trim();
-    }
-
-    public String getDisplayContend() {
-        return displayContend;
-    }
-
-    public void setDisplayContend(String displayContend) {
-        this.displayContend = displayContend == null ? null : displayContend.trim();
     }
 }

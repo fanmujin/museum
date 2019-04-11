@@ -2,18 +2,18 @@ package com.muzi.museum.bean;
 
 import java.util.Date;
 
-public class Digital {
+public class CultureDigital {
     private Integer id;
 
-    private String digitalName;
+    private Integer cultureId;
 
-    private String picture;
+    private Integer digitalId;
 
     private Date createTime;
 
     private Date updateTime;
 
-    private String createUser;
+    private String creatUser;
 
     private String updateUser;
 
@@ -27,20 +27,20 @@ public class Digital {
         this.id = id;
     }
 
-    public String getDigitalName() {
-        return digitalName;
+    public Integer getCultureId() {
+        return cultureId;
     }
 
-    public void setDigitalName(String digitalName) {
-        this.digitalName = digitalName == null ? null : digitalName.trim();
+    public void setCultureId(Integer cultureId) {
+        this.cultureId = cultureId;
     }
 
-    public String getPicture() {
-        return picture;
+    public Integer getDigitalId() {
+        return digitalId;
     }
 
-    public void setPicture(String picture) {
-        this.picture = picture == null ? null : picture.trim();
+    public void setDigitalId(Integer digitalId) {
+        this.digitalId = digitalId;
     }
 
     public Date getCreateTime() {
@@ -59,12 +59,12 @@ public class Digital {
         this.updateTime = updateTime;
     }
 
-    public String getCreateUser() {
-        return createUser;
+    public String getCreatUser() {
+        return creatUser;
     }
 
-    public void setCreateUser(String createUser) {
-        this.createUser = createUser == null ? null : createUser.trim();
+    public void setCreatUser(String creatUser) {
+        this.creatUser = creatUser == null ? null : creatUser.trim();
     }
 
     public String getUpdateUser() {
