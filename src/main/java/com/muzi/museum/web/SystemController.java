@@ -1,6 +1,6 @@
 package com.muzi.museum.web;
 
-import com.muzi.museum.bean.Ssystem;
+import com.muzi.museum.bean.Ssy;
 import com.muzi.museum.dao.result.Result;
 import com.muzi.museum.service.ISystemService;
 import io.swagger.annotations.Api;
@@ -15,40 +15,40 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/system")
-@Api("系统配置")
+@Api(tags = "系统配置")
 public class SystemController {
      @Autowired
     ISystemService iSystemService;
      //查询所有的系统配置
-     @GetMapping("findAllWeb")
+     @GetMapping("findAllSystem")
      @ApiOperation(value = "查询所有的系统配置")
-    public Result findAllWeb(){
-         List<Ssystem> list = iSystemService.findAll();
+    public Result findAllSystem(){
+         List<Ssy> list = iSystemService.findAll();
          return Result.success(list);
      }
      //通过id查询系统配置
-    @GetMapping("findWebById/{id}")
+    @GetMapping("findSystemById/{id}")
     @ApiOperation(value = "通过id查询系统配置")
-    public Result findWebById(int id){
-         Ssystem ssystem = iSystemService.findSystemById(id);
-         return Result.success(ssystem);
+    public Result findSystemById(int id){
+         Ssy ssy = iSystemService.findSystemById(id);
+         return Result.success(ssy);
     }
     //插入新的系统配置
-    @PostMapping("insertWeb")
+    @PostMapping("insertSystem")
     @ApiOperation(value = "插入新的系统配置")
-    public String insertWeb(Ssystem ssystem){
-         int re  = iSystemService.insertSystem(ssystem);
+    public String insertSystem(Ssy ssy){
+         int re  = iSystemService.insertSystem(ssy);
          return re > 0 ? "SUCCESS" : "ERROR";
     }
     //修改系统配置
-    @PostMapping("updateWeb")
+    @PostMapping("updateSystem")
     @ApiOperation(value = "修改新的系统配置")
-    public String updateWeb(Ssystem ssystem){
-         int re = iSystemService.updateSystem(ssystem);
+    public String updateWeb(Ssy ssy){
+         int re = iSystemService.updateSystem(ssy);
          return re > 0 ? "SUCCESS" : "ERROR";
     }
     //删除系统配置
-    @GetMapping("deleteWebById/{id}")
+    @GetMapping("deleteSystemById/{id}")
     @ApiOperation(value = "通过id删除系统配置")
     public String deleteWebById(int id){
          int re = iSystemService.deleteSystem(id);
