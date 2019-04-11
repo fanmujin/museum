@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.muzi.museum.dao.extend.CultureVMMapper" >
+    <resultMap id="BaseResultMap" type="com.muzi.museum.bean.extend.CultureVM" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="culture_name" property="cultureName" jdbcType="VARCHAR" />
+        <result column="type_id" property="typeId" jdbcType="INTEGER" />
+        <result column="address_id" property="addressId" jdbcType="INTEGER" />
+        <result column="culture_description" property="cultureDescription" jdbcType="VARCHAR" />
+        <result column="culture_level" property="cultureLevel" jdbcType="VARCHAR" />
+        <result column="culture_picture" property="culturePicture" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+        <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+        <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+        <result column="is_delete" property="isDelete" jdbcType="CHAR" />
+        <collection column="id" property="culture_pictures" javaType="ArrayList"
+                    ofType="com.muzi.museum.bean.Culture_picture"
+                    select="selectCulture_PictureByCultureId"/>
+    </resultMap>
+    <sql id="Base_Column_List" >
+    id, culture_name, type_id, address_id, culture_description, culture_level, culture_picture,
+    create_time, update_time, create_user, update_user, is_delete
+  </sql>
+    <select id="selectCulture_PictureByCultureId"
+            parameterType="int"
+            resultType="com.muzi.museum.bean.Culture_picture"
+            >
+        select * from culture_picture where culture_id = #{id}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from culture
+    </select>
+</mapper>
