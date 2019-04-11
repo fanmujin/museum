@@ -15,6 +15,13 @@
     id, picture_url, culture_id, create_time, update_time, create_user, update_user, 
     is_delete
   </sql>
+
+  <!--通过名俗的id查询图片 -->
+  <select id="selectByCultureByCultureId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+     select <include refid="Base_Column_List" />
+     from culture_picture where culture_id = #{id,jdbcType=INTEGER}
+  </select>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

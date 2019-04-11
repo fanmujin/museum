@@ -2,6 +2,8 @@ package com.muzi.museum.dao;
 
 import com.muzi.museum.bean.CultureDisplay;
 
+import java.util.List;
+
 public interface CultureDisplayMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,6 @@ public interface CultureDisplayMapper {
     int updateByPrimaryKeySelective(CultureDisplay record);
 
     int updateByPrimaryKey(CultureDisplay record);
+
+    List<CultureDisplay> selectDisplayByCultureId();
 }

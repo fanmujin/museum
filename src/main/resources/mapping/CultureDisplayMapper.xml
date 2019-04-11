@@ -14,6 +14,13 @@
   <sql id="Base_Column_List" >
     id, culture_id, display_id, create_time, updat_time, create_user, update_user, is_delete
   </sql>
+
+  <select id="selectDisplayByCultureId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+      select
+      <include refid="Base_Column_List" />
+      from culture_display where culture_id = #{id,jdbcType=INTEGER}
+  </select>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
