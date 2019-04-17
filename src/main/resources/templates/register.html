@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="form-div">
+    <form id="form1" onsubmit="return false" action="##" method="post">
+        <p>用户名：<input name="name" type="text" id="txtUserName" tabindex="1" size="15" value=""/></p>
+        <p>密　码：<input name="password" type="password" id="TextBox2" tabindex="2" size="16" value=""/></p>
+        <p><input type="button" value="注册" onclick="login()">&nbsp;<input type="reset" value="重置"></p>
+    </form>
+</div>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript">
+    function login() {
+        $.ajax({
+            //几个参数需要注意一下
+            type: "POST",//方法类型
+            dataType: "json",//预期服务器返回的数据类型
+            url: "/Manager/doRegister" ,//url
+            data: $('#form1').serialize(),
+            success: function (result) {
+                console.log(result);//打印服务端返回的数据(调试用)
+                var data =result.data;
+                if(data.status) {
+                    alert("注册成功,欢迎"+data.name+"!");
+                } else {
+                    alert("账户或密码无效！");
+                }
+            },
+            error : function() {
+                alert("异常！");
+            }
+        });
+    }
+</script>
+</body>
+</html>

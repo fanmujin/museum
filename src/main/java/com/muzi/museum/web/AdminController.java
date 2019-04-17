@@ -5,17 +5,58 @@ import com.muzi.museum.dao.result.Result;
 import com.muzi.museum.service.IAdminService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
 @Api(tags = "管理员")
 @RequestMapping("/Manager")
 public class AdminController {
-
     @Autowired
     IAdminService iAdminService;
+    protected static final Logger logger = LoggerFactory.getLogger(AdminController.class);
+
+    @PostMapping("/doRegister")
+    public Result register(@RequestParam("name") String name, @RequestParam("password") String password){
+        Admin admin=new Admin();
+        admin.setAdminName(name);
+        admin.setAdminPassword(password);
+        HashMap data=new HashMap();
+        data.put("status",false);
+        int pt=iAdminService.insert(admin);
+        logger.info("pt:"+pt);
+        if(pt>0){
+            data.put("status",true);
+            data.put("name",name);
+        }
+        return Result.success(data);
+    }
+
+    @PostMapping("/doLogin")
+    public Result login(@RequestParam("name") String name, @RequestParam("password") String password){
+        List<Admin> listAdmin=iAdminService.findAll();
+        HashMap data=new HashMap();
+        data.put("status",false);
+        if(listAdmin!=null){
+            for (Admin admin:listAdmin) {
+                logger.info(admin.getAdminName()+":"+admin.getAdminPassword());
+                if(admin.getAdminName().equals(name)&&admin.getAdminPassword().equals(password)){
+                    logger.info("login successfully!");
+                    data.put("status",true);
+                    data.put("name",name);
+                    break;
+                }
+            }
+        }
+        return Result.success(data);
+    }
+
     //查找出所有的管理员的详细信息
     @GetMapping("findAllmanager")
     @ApiOperation("查找所有的管理员")

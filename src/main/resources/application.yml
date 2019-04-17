@@ -1,6 +1,9 @@
 server:
   port: 8080
 spring:
+  mvc:
+     static-path-pattern: /**
+     # 静态资源访问　默认值为 classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
   thymeleaf:
     prefix: classpath:/templates/
   jpa:
@@ -14,7 +17,7 @@ spring:
   datasource:
       name: test
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://127.0.0.1:3306/museum
+      url: jdbc:mysql://192.168.8.101:3306/museum
       username: root
       password: root
   redis:
@@ -33,4 +36,14 @@ msg-config:
 
 thymeleaf:
   cache: false
+
+#配置日志
+logging: #配置日志文件路径
+  path: log
+  level:
+        xatu.zsl: debug #不同目录下的日志可配置不同级别
+        org.springfromework.web: info
+        org.hibernate: error
+
+
 

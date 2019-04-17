@@ -17,6 +17,8 @@ public class Result implements Serializable {
 
     private Object data;
 
+    private int test;
+
     public Result() {}
 
     public Result(Integer code, String msg) {

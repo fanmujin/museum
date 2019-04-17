@@ -1,8 +1,8 @@
-<!DOCTYPE html><html><head><meta charset=utf-8>
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml"><head><meta charset=utf-8>
     <meta name=viewport content="width=device-width,initial-scale=1">
-    <title>demo</title><link href=/static/css/app.6ef58d0034e5c40335a11dd9ff28b625.css rel=stylesheet>
+    <title>demo</title><link href=../static/css/app.6ef58d0034e5c40335a11dd9ff28b625.css rel=stylesheet>
 </head><body><div id=app>
-    hello
     <el-row>
         <el-button>默认按钮</el-button>
         <el-button type="primary">主要按钮</el-button>
@@ -12,9 +12,15 @@
         <el-button type="danger">危险按钮</el-button>
     </el-row>
 </div>
-<script type=text/javascript src=/static/js/manifest.2ae2e69a05c33dfc65f8.js>
+<script type=text/javascript src=../static/js/manifest.2ae2e69a05c33dfc65f8.js>
 
-</script><script type=text/javascript src=/static/js/vendor.16db0ef083b2ad1bb2c1.js>
+</script><script type=text/javascript src=../static/js/vendor.16db0ef083b2ad1bb2c1.js>
 
-</script><script type=text/javascript src=/static/js/app.bc37584b41b83db0ce79.js></script>
+</script><script type=text/javascript src=../static/js/app.bc37584b41b83db0ce79.js></script>
+
+<script>
+    console.log("called this");
+</script>
+<p th:text="'Hello！, ' + ${name}+ '!'" >没有登录</p>
+
 </body></html>
