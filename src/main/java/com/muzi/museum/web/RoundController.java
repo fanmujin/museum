@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/Round")
-@Api(tags = "轮播图")
+@Api(tags = "Round")
 public class RoundController {
     @Autowired
     IRoundService iRoundService;

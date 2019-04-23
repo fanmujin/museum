@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/notify")
-@Api(tags = "通知消息")
+@Api(tags = "Notify")
 public class NotifyController {
     @Autowired
     INotifyService iNotifyService;

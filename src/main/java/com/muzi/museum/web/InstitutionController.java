@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@Api(tags = "学术前沿")
+@Api(tags = "Institution")
 @RequestMapping("/institutions")
 public class InstitutionController {
     @Autowired

@@ -15,7 +15,11 @@ public interface CultureMapper {
 
     int updateByPrimaryKeySelective(Culture record);
 
+    int updateByPrimaryKeyWithBLOBs(Culture record);
+
     int updateByPrimaryKey(Culture record);
 
-    List<Culture> findCulture();
+    List<Culture> selectCulture();
+
+    Culture selectCultureByName(String cultureName);
 }

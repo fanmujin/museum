@@ -7,18 +7,18 @@ import com.muzi.museum.dao.result.Result;
 import com.muzi.museum.service.ICultureService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/culture")
-@Api(tags = "文化名俗")
+@Api(tags = "Culture")
 public class CultureController {
+    protected static final Logger logger = LoggerFactory.getLogger(LoginController.class);
     @Autowired
     ICultureService iCultureService;
     @GetMapping("findAllCulture")
@@ -32,6 +32,20 @@ public class CultureController {
     public Result findCulture(){
         List<Culture> list = iCultureService.findCulture();
         return Result.success(list);
+    }
+    @GetMapping("findCultureById/{id}")
+    @ApiOperation(value = "通过cultureID查询文化详细信息")
+    public Result findCultureById(@PathVariable("id") int id){
+        Culture re = iCultureService.findCultureById(id);
+        return Result.success(re);
+    }
+    @GetMapping("findCultureByName/{name}")
+    @ApiOperation(value = "通过name查询名俗文化")
+    public Result findCultureByName(@PathVariable("name") String name){
+        logger.info(name);
+        Culture re = iCultureService.findCultureByName(name);
+        logger.info("result:"+re);
+        return Result.success(re);
     }
     @PostMapping("saveOrupdateCulture")
     @ApiOperation(value = "添加或修改名俗文化")

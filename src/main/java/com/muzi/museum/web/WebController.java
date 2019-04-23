@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@Api(tags = "Web")
 @RequestMapping("/webb")
-@Api(tags = "相关网站")
+
 public class WebController {
     @Autowired
     IWebbService iWebbService;

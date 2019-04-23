@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/system")
-@Api(tags = "系统配置")
+@Api(tags = "System-setting")
 public class SystemController {
      @Autowired
     ISystemService iSystemService;

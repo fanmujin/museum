@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@Api(tags = "名俗类别")
+@Api(tags = "Culture-Type")
 @RequestMapping("/typee")
 public class TypeController {
     @Autowired

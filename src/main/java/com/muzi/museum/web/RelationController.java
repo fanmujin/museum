@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/relation")
-@Api(tags = "网站联系方式")
+@Api(tags = "Relationship")
 public class RelationController {
     @Autowired
     private IRelationService iRelationService;

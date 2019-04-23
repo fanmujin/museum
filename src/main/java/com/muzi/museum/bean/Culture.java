@@ -11,8 +11,6 @@ public class Culture {
 
     private Integer addressId;
 
-    private String cultureDescription;
-
     private String cultureLevel;
 
     private String culturePicture;
@@ -26,6 +24,8 @@ public class Culture {
     private String updateUser;
 
     private String isDelete;
+
+    private String cultureDescription;
 
     public Integer getId() {
         return id;
@@ -57,14 +57,6 @@ public class Culture {
 
     public void setAddressId(Integer addressId) {
         this.addressId = addressId;
-    }
-
-    public String getCultureDescription() {
-        return cultureDescription;
-    }
-
-    public void setCultureDescription(String cultureDescription) {
-        this.cultureDescription = cultureDescription == null ? null : cultureDescription.trim();
     }
 
     public String getCultureLevel() {
@@ -121,5 +113,13 @@ public class Culture {
 
     public void setIsDelete(String isDelete) {
         this.isDelete = isDelete == null ? null : isDelete.trim();
+    }
+
+    public String getCultureDescription() {
+        return cultureDescription;
+    }
+
+    public void setCultureDescription(String cultureDescription) {
+        this.cultureDescription = cultureDescription == null ? null : cultureDescription.trim();
     }
 }

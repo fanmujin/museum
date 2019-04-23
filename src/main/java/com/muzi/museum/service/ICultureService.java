@@ -10,4 +10,8 @@ public interface ICultureService {
     public List<CultureVM> findAllCulture();
     //查询名俗的详细信息
     public List<Culture> findCulture();
+    //通过id查询名俗信息
+    public Culture findCultureById(int id);
+    //通过name查询名俗信息
+    public  Culture findCultureByName(String name);
 }

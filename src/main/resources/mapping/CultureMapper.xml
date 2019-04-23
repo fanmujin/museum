@@ -6,7 +6,6 @@
     <result column="culture_name" property="cultureName" jdbcType="VARCHAR" />
     <result column="type_id" property="typeId" jdbcType="INTEGER" />
     <result column="address_id" property="addressId" jdbcType="INTEGER" />
-    <result column="culture_description" property="cultureDescription" jdbcType="VARCHAR" />
     <result column="culture_level" property="cultureLevel" jdbcType="VARCHAR" />
     <result column="culture_picture" property="culturePicture" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
@@ -15,17 +14,33 @@
     <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
     <result column="is_delete" property="isDelete" jdbcType="CHAR" />
   </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.muzi.museum.bean.Culture" extends="BaseResultMap" >
+    <result column="culture_description" property="cultureDescription" jdbcType="LONGVARCHAR" />
+  </resultMap>
   <sql id="Base_Column_List" >
-    id, culture_name, type_id, address_id, culture_description, culture_level, culture_picture, 
-    create_time, update_time, create_user, update_user, is_delete
+    id, culture_name, type_id, address_id, culture_level, culture_picture, create_time, 
+    update_time, create_user, update_user, is_delete
   </sql>
-  <select id="findCulture" resultMap="BaseResultMap">
-select <include refid="Base_Column_List"></include>
-    from culture
+  <sql id="Blob_Column_List" >
+    culture_description
+  </sql>
+  <select id="selectCultureByName" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String">
+    select <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from  culture where culture_name = #{cultureName,jdbcType=VARCHAR}
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectCulture" resultMap="ResultMapWithBLOBs">
+      select <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+      from  culture
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
     from culture
     where id = #{id,jdbcType=INTEGER}
   </select>
@@ -35,14 +50,14 @@ select <include refid="Base_Column_List"></include>
   </delete>
   <insert id="insert" parameterType="com.muzi.museum.bean.Culture" >
     insert into culture (id, culture_name, type_id, 
-      address_id, culture_description, culture_level, 
-      culture_picture, create_time, update_time, 
-      create_user, update_user, is_delete
+      address_id, culture_level, culture_picture, 
+      create_time, update_time, create_user, 
+      update_user, is_delete, culture_description
       )
     values (#{id,jdbcType=INTEGER}, #{cultureName,jdbcType=VARCHAR}, #{typeId,jdbcType=INTEGER}, 
-      #{addressId,jdbcType=INTEGER}, #{cultureDescription,jdbcType=VARCHAR}, #{cultureLevel,jdbcType=VARCHAR}, 
-      #{culturePicture,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, #{isDelete,jdbcType=CHAR}
+      #{addressId,jdbcType=INTEGER}, #{cultureLevel,jdbcType=VARCHAR}, #{culturePicture,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
+      #{updateUser,jdbcType=VARCHAR}, #{isDelete,jdbcType=CHAR}, #{cultureDescription,jdbcType=LONGVARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.muzi.museum.bean.Culture" >
@@ -59,9 +74,6 @@ select <include refid="Base_Column_List"></include>
       </if>
       <if test="addressId != null" >
         address_id,
-      </if>
-      <if test="cultureDescription != null" >
-        culture_description,
       </if>
       <if test="cultureLevel != null" >
         culture_level,
@@ -84,6 +96,9 @@ select <include refid="Base_Column_List"></include>
       <if test="isDelete != null" >
         is_delete,
       </if>
+      <if test="cultureDescription != null" >
+        culture_description,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -97,9 +112,6 @@ select <include refid="Base_Column_List"></include>
       </if>
       <if test="addressId != null" >
         #{addressId,jdbcType=INTEGER},
-      </if>
-      <if test="cultureDescription != null" >
-        #{cultureDescription,jdbcType=VARCHAR},
       </if>
       <if test="cultureLevel != null" >
         #{cultureLevel,jdbcType=VARCHAR},
@@ -122,6 +134,9 @@ select <include refid="Base_Column_List"></include>
       <if test="isDelete != null" >
         #{isDelete,jdbcType=CHAR},
       </if>
+      <if test="cultureDescription != null" >
+        #{cultureDescription,jdbcType=LONGVARCHAR},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.muzi.museum.bean.Culture" >
@@ -135,9 +150,6 @@ select <include refid="Base_Column_List"></include>
       </if>
       <if test="addressId != null" >
         address_id = #{addressId,jdbcType=INTEGER},
-      </if>
-      <if test="cultureDescription != null" >
-        culture_description = #{cultureDescription,jdbcType=VARCHAR},
       </if>
       <if test="cultureLevel != null" >
         culture_level = #{cultureLevel,jdbcType=VARCHAR},
@@ -160,7 +172,25 @@ select <include refid="Base_Column_List"></include>
       <if test="isDelete != null" >
         is_delete = #{isDelete,jdbcType=CHAR},
       </if>
+      <if test="cultureDescription != null" >
+        culture_description = #{cultureDescription,jdbcType=LONGVARCHAR},
+      </if>
     </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.muzi.museum.bean.Culture" >
+    update culture
+    set culture_name = #{cultureName,jdbcType=VARCHAR},
+      type_id = #{typeId,jdbcType=INTEGER},
+      address_id = #{addressId,jdbcType=INTEGER},
+      culture_level = #{cultureLevel,jdbcType=VARCHAR},
+      culture_picture = #{culturePicture,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      is_delete = #{isDelete,jdbcType=CHAR},
+      culture_description = #{cultureDescription,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.muzi.museum.bean.Culture" >
@@ -168,7 +198,6 @@ select <include refid="Base_Column_List"></include>
     set culture_name = #{cultureName,jdbcType=VARCHAR},
       type_id = #{typeId,jdbcType=INTEGER},
       address_id = #{addressId,jdbcType=INTEGER},
-      culture_description = #{cultureDescription,jdbcType=VARCHAR},
       culture_level = #{cultureLevel,jdbcType=VARCHAR},
       culture_picture = #{culturePicture,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},

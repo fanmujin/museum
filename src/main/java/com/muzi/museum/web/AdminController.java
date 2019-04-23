@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @RestController
-@Api(tags = "管理员")
+@Api(tags = "Admin")
 @RequestMapping("/Manager")
 public class AdminController {
     @Autowired

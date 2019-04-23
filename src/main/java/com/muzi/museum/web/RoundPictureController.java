@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/RoudPicture")
-@Api(tags = "轮播图图片")
+@Api(tags = "Round-Picture")
 public class RoundPictureController {
 
     @Autowired
