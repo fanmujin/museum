@@ -17,7 +17,7 @@ spring:
   datasource:
       name: test
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://192.168.8.101:3306/museum
+      url: jdbc:mysql://localhost:3306/museum
       username: root
       password: root
   redis:

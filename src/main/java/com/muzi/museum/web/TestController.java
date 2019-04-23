@@ -1,5 +1,6 @@
 package com.muzi.museum.web;
 
+import com.muzi.museum.dao.result.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -15,9 +16,10 @@ public class TestController {
     protected static final Logger logger = LoggerFactory.getLogger(TestController.class);
 
     @RequestMapping("/first")
-    public String test() {
+    public String first() {
         //map.put("hello", "欢迎进入HTML页面");
         logger.info("called test()");
-        return "first";
+        return "index";
     }
+
 }

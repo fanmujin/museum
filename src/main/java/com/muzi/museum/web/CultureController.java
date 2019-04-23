@@ -1,5 +1,6 @@
 package com.muzi.museum.web;
 
+import com.muzi.museum.bean.Culture;
 import com.muzi.museum.bean.extend.CultureExtend;
 import com.muzi.museum.bean.extend.CultureVM;
 import com.muzi.museum.dao.result.Result;
@@ -24,6 +25,12 @@ public class CultureController {
     @ApiOperation(value = "查找所有的文化名俗详情")
     public Result findAllCulture(){
         List<CultureVM> list = iCultureService.findAllCulture();
+        return Result.success(list);
+    }
+    @GetMapping("findCulture")
+    @ApiOperation(value = "查询文化的description")
+    public Result findCulture(){
+        List<Culture> list = iCultureService.findCulture();
         return Result.success(list);
     }
     @PostMapping("saveOrupdateCulture")

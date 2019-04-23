@@ -2,6 +2,7 @@ package com.muzi.museum.service.impl;
 
 import com.muzi.museum.bean.Culture;
 import com.muzi.museum.bean.extend.CultureVM;
+import com.muzi.museum.dao.CultureMapper;
 import com.muzi.museum.dao.extend.CultureVMMapper;
 import com.muzi.museum.service.ICultureService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +15,17 @@ import java.util.List;
 public class ICultureServiceImpl implements ICultureService {
     @Autowired
     CultureVMMapper cultureVMMapper;
+    @Autowired
+    CultureMapper cultureMapper;
 
     @Override
     public List<CultureVM> findAllCulture() {
         return cultureVMMapper.seleteAll();
+    }
+
+    @Override
+    public List<Culture> findCulture() {
+        return cultureMapper.findCulture();
     }
 }
 

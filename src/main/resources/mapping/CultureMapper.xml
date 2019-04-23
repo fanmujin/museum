@@ -19,6 +19,10 @@
     id, culture_name, type_id, address_id, culture_description, culture_level, culture_picture, 
     create_time, update_time, create_user, update_user, is_delete
   </sql>
+  <select id="findCulture" resultMap="BaseResultMap">
+select <include refid="Base_Column_List"></include>
+    from culture
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
