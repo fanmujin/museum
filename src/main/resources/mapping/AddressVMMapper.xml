@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.muzi.museum.dao.extend.AddressVMMapper" >
+    <resultMap id="BaseResultMap" type="com.muzi.museum.bean.extend.AddressVM" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="address_name" property="addressName" jdbcType="VARCHAR" />
+        <result column="address_picture" property="addressPicture" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+        <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+        <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+        <result column="is_delete" property="isDelete" jdbcType="CHAR" />
+        <collection column="id" property="cultureList" select="selectAddressById" javaType="ArrayList"
+                    ofType="com.muzi.museum.bean.Culture">
+        </collection>
+    </resultMap>
+    <sql id="Base_Column_List" >
+    id, address_name, address_picture, create_time, update_time, create_user, update_user,
+    is_delete
+  </sql>
+    <select id="selectAddressById" resultType="com.muzi.museum.bean.Culture" parameterType="int">
+        select * from culture where address_id = #{id}
+    </select>
+    <select id="selectCultureByAddressId" resultMap="BaseResultMap" parameterType="int">
+        select * from address where id = #{id}
+    </select>
+</mapper>
