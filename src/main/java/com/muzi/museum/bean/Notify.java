@@ -1,8 +1,9 @@
 package com.muzi.museum.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Notify {
+public class Notify implements Serializable {
     private Integer id;
 
     private String notifyTitle;

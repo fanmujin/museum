@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<div th:object="${notify}">
+    <p th:text="'id：' + *{id}"/>
+    <p th:text="'notifyTitle：' + *{notifyTitle}"/>
+    <p th:text="'createTime：' + *{#dates.format(createTime,'yyyy-MM-dd HH:mm:ss')}"/>
+    <p th:text="'notifyContent：' + *{notifyContent}"/>
+</div>
+<a href="" th:href="${origin}">返回</a>
+<body>
+</body>
+</html>
