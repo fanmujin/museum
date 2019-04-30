@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>nsjskjnx</title>
+    <title>Title</title>
     <style>
         p{
             text-indent: 30px;
@@ -14,16 +14,15 @@
         a.one:hover { color:#454545;text-decoration:none;}
     </style>
 </head>
-
-<body >
+<body>
 <a href="" th:href="${origin}" class="one">通知公告</a>
-<div th:object="${notify}">
+<div th:object="${institutions}">
     <!--<p th:text="'id：' + *{id}"/>-->
-    <h1 align="center"><p th:text="*{notifyTitle}"/></h1>
+    <h1 align="center"><p th:text="*{reportName}"/></h1>
     <p th:text="*{#dates.format(createTime,'yyyy-MM-dd HH:mm:ss')}" align="center"/>
     <hr/>
-    <div style="width: 80%;margin-left: 90px;" th:utext="*{notifyContent}">
-     </div>
-   </div>
- </body>
+    <div style="width: 80%;margin-left: 90px;" th:utext="*{reportContend}">
+    </div>
+</div>
+</body>
 </html>

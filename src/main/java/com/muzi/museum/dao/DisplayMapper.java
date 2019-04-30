@@ -2,6 +2,8 @@ package com.muzi.museum.dao;
 
 import com.muzi.museum.bean.Display;
 
+import java.util.List;
+
 public interface DisplayMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -16,4 +18,6 @@ public interface DisplayMapper {
     int updateByPrimaryKeyWithBLOBs(Display record);
 
     int updateByPrimaryKey(Display record);
+
+    List<Display> selectDisplay();
 }

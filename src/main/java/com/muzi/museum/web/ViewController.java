@@ -1,6 +1,10 @@
 package com.muzi.museum.web;
 
+import com.muzi.museum.bean.Display;
+import com.muzi.museum.bean.Institutions;
 import com.muzi.museum.bean.Notify;
+import com.muzi.museum.service.IDisplayService;
+import com.muzi.museum.service.IInstitutionService;
 import com.muzi.museum.service.INotifyService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +16,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/notifyView")
+@RequestMapping("/View")
 public class ViewController {
 
     @Autowired
     INotifyService iNotifyService;
-
+    @Autowired
+    IDisplayService iDisplayService;
+    @Autowired
+    IInstitutionService iInstitutionService;
     //通过id查询通知消息
     @GetMapping("findNotifyById/{id}")
     @ApiOperation(value = "通过id查询通知消息")
@@ -27,5 +34,22 @@ public class ViewController {
         model.addAttribute("origin",origin);
         return "notify_view";
     }
-
+    //通过id查询展览消息
+    @GetMapping("finddisplayById/{id}")
+    @ApiOperation(value = "通过id查询信息展览")
+    public String finddisplayById(@PathVariable int id ,@RequestParam String origin, Model model){
+        Display display = iDisplayService.findDisplayById(id);
+        model.addAttribute("display", display);
+        model.addAttribute("origin",origin);
+        return "display_view";
+    }
+    //通过id查询学术消息
+    @GetMapping("findInstitutionById/{id}")
+    @ApiOperation(value = "通过id查询学术信息")
+    public String findInstitutionById(@PathVariable int id ,@RequestParam String origin, Model model){
+        Institutions institutions = iInstitutionService.findInstitutionById(id);
+        model.addAttribute("institutions", institutions);
+        model.addAttribute("origin",origin);
+        return "institutions_view";
+    }
 }
