@@ -1,8 +1,8 @@
 package com.muzi.museum.web;
 
-import com.muzi.museum.bean.Display;
 import com.muzi.museum.bean.Institutions;
 import com.muzi.museum.bean.Notify;
+import com.muzi.museum.bean.extend.DisplayVM;
 import com.muzi.museum.service.IDisplayService;
 import com.muzi.museum.service.IInstitutionService;
 import com.muzi.museum.service.INotifyService;
@@ -38,8 +38,8 @@ public class ViewController {
     @GetMapping("finddisplayById/{id}")
     @ApiOperation(value = "通过id查询信息展览")
     public String finddisplayById(@PathVariable int id ,@RequestParam String origin, Model model){
-        Display display = iDisplayService.findDisplayById(id);
-        model.addAttribute("display", display);
+        DisplayVM displayVM = iDisplayService.finDisplayPictureById(id);
+        model.addAttribute("display", displayVM);
         model.addAttribute("origin",origin);
         return "display_view";
     }

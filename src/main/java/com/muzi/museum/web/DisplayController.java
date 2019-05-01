@@ -1,6 +1,7 @@
 package com.muzi.museum.web;
 
 import com.muzi.museum.bean.Display;
+import com.muzi.museum.bean.extend.DisplayVM;
 import com.muzi.museum.dao.result.Result;
 import com.muzi.museum.service.IDisplayService;
 import io.swagger.annotations.Api;
@@ -32,5 +33,12 @@ public class DisplayController {
     public Result findDisplayById(int id){
         Display display = iDisplayService.findDisplayById(id);
         return Result.success(display);
+    }
+    //通过Display的id查询下面的图片信息
+    @GetMapping("findDisplayPictureById/{id}")
+    @ApiOperation(value = "查询display的图片信息")
+    public DisplayVM findDisplayPictureById(int id){
+        DisplayVM displayVM = iDisplayService.finDisplayPictureById(id);
+        return displayVM;
     }
 }
