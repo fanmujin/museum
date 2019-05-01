@@ -2,7 +2,7 @@ server:
   port: 8080
 spring:
   mvc:
-     static-path-pattern: /**
+     static-path-pattern:/static/**
      # 静态资源访问　默认值为 classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
   thymeleaf:
     prefix: classpath:/templates/
