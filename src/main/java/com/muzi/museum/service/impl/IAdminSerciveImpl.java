@@ -42,5 +42,10 @@ public class IAdminSerciveImpl implements IAdminService {
         return adminMapper.updateByPrimaryKey(admin);
     }
 
+    @Override
+    public List<Admin> findByName(String name) {
+        return adminMapper.selectByName(name);
+    }
+
 
 }

@@ -22,4 +22,5 @@ public interface AdminMapper {
     //查找所有的管理员的详细信息
     List<Admin> selectAll();
     //查找管理员信息通过关键字
+    List<Admin> selectByName(String name);
 }

@@ -93,4 +93,11 @@ public class AdminController {
         int re = iAdminService.updateByPrimaryKey(admin);
         return re > 0 ? "SUCCESS" : "ERROR";
     }
+    //通过管理员的name查询管理员的信息
+    @PostMapping("findByName")
+    @ApiOperation(value = "通过管理员的name查询信息")
+    public Result findByName(@RequestParam("name") String name){
+        List<Admin> list = iAdminService.findByName(name);
+        return Result.success(list);
+    }
 }

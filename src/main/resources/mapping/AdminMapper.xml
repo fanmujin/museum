@@ -30,6 +30,12 @@
     from admin
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from admin
+    where admin_name Like  concat('%',#{name},'%')
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from admin
     where id = #{id,jdbcType=INTEGER}
