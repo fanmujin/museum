@@ -8,9 +8,10 @@ import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -89,7 +90,7 @@ public class AdminController {
     //通过管理员的id更新管理员的详细信息
     @PostMapping("updateById")
     @ApiOperation(value = "通过管理员的id更新管理员的详细信息")
-    public String  updateById(Admin admin){
+    public String  updateById(Admin admin,@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss") @RequestParam Date cdate){
         int re = iAdminService.updateByPrimaryKey(admin);
         return re > 0 ? "SUCCESS" : "ERROR";
     }
