@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.muzi.museum.dao.extend.DisplayVMMapper" >
+    <resultMap id="BaseResultMap" type="com.muzi.museum.bean.extend.DisplayVM" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="display_title" property="displayTitle" jdbcType="VARCHAR" />
+        <result column="diapaly_startdate" property="diapalyStartdate" jdbcType="TIMESTAMP" />
+        <result column="display_enddate" property="displayEnddate" jdbcType="TIMESTAMP" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+        <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+        <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+        <result column="is_delete" property="isDelete" jdbcType="CHAR" />
+        <collection property="display_pictures" column="id"
+                    select="com.muzi.museum.dao.Display_pictureMapper.selectPictureByDisplayId"
+                    javaType="ArrayList"></collection>
+    </resultMap>
+    <resultMap id="ResultMapWithBLOBs" type="com.muzi.museum.bean.extend.DisplayVM" extends="BaseResultMap" >
+        <result column="display_contend" property="displayContend" jdbcType="LONGVARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+    id, display_title, diapaly_startdate, display_enddate, create_time, update_time,
+    create_user, update_user, is_delete
+  </sql>
+    <sql id="Blob_Column_List" >
+    display_contend
+  </sql>
+<select id="selectDisplayByDisplayId" resultMap="ResultMapWithBLOBs"  parameterType="java.lang.Integer">
+    select 
+    <include refid="Base_Column_List"/>
+    ,
+    <include refid="Blob_Column_List"/>
+    from display where id = #{id,jdbcType=INTEGER}
+</select>
+</mapper>

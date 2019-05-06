@@ -26,6 +26,7 @@
                 var data =result.data;
                 if(data.status) {
                     alert("登录成功,欢迎"+data.name+"!");
+                    window.location.href='./login_Next.html';
                 } else {
                     alert("账户或密码错误！");
                 }

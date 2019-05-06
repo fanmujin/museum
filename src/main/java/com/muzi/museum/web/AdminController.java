@@ -64,6 +64,7 @@ public class AdminController {
         List<Admin> list = iAdminService.findAll();
         return Result.success(list);
     }
+
     //添加新的管理员的信息
     @PostMapping("addmanager")
     @ApiOperation(value = "添加新的管理员的详细信息")

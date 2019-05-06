@@ -2,10 +2,12 @@ package com.muzi.museum.web;
 
 import com.muzi.museum.bean.Institutions;
 import com.muzi.museum.bean.Notify;
+import com.muzi.museum.bean.Rule;
 import com.muzi.museum.bean.extend.DisplayVM;
 import com.muzi.museum.service.IDisplayService;
 import com.muzi.museum.service.IInstitutionService;
 import com.muzi.museum.service.INotifyService;
+import com.muzi.museum.service.IRuleService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.persistence.Access;
 
 @Controller
 @RequestMapping("/View")
@@ -25,6 +29,8 @@ public class ViewController {
     IDisplayService iDisplayService;
     @Autowired
     IInstitutionService iInstitutionService;
+    @Autowired
+    IRuleService iRuleService;
     //通过id查询通知消息
     @GetMapping("findNotifyById/{id}")
     @ApiOperation(value = "通过id查询通知消息")
@@ -51,5 +57,14 @@ public class ViewController {
         model.addAttribute("institutions", institutions);
         model.addAttribute("origin",origin);
         return "institutions_view";
+    }
+    //通过规章id查询规章
+    @GetMapping("findRuleById/{id}")
+    @ApiOperation(value = "通过id查询规则详情")
+    public String findRuleById(@PathVariable int id ,@RequestParam String origin, Model model){
+        Rule rule = iRuleService.findRuleById(id);
+        model.addAttribute("rule" ,rule);
+        model.addAttribute("origin",origin);
+        return "rule_view";
     }
 }
