@@ -91,6 +91,8 @@ public class AdminController {
     @PostMapping("updateById")
     @ApiOperation(value = "通过管理员的id更新管理员的详细信息")
     public String  updateById(Admin admin,@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss") @RequestParam Date cdate){
+        //将后台传来的参数转化为时间格式，并且赋值给admin.createaTime
+        admin.setCreateTime(cdate);
         int re = iAdminService.updateByPrimaryKey(admin);
         return re > 0 ? "SUCCESS" : "ERROR";
     }
