@@ -33,9 +33,9 @@ public class CultureController {
         List<Culture> list = iCultureService.findCulture();
         return Result.success(list);
     }
-    @GetMapping("findCultureById/{id}")
+    @GetMapping("findCultureById")
     @ApiOperation(value = "通过cultureID查询文化详细信息")
-    public Result findCultureById(@PathVariable("id") int id){
+    public Result findCultureById(@RequestParam("id") int id){
         Culture re = iCultureService.findCultureById(id);
         return Result.success(re);
     }
@@ -49,7 +49,14 @@ public class CultureController {
     }
     @PostMapping("saveOrupdateCulture")
     @ApiOperation(value = "添加或修改名俗文化")
-    public String SaveOrUpdate(CultureExtend cultureExtend){
+    public String SaveOrUpdate(){
         return "Success";
+    }
+    //通过ID删除Culture
+    @DeleteMapping("deleteById")
+    @ApiOperation(value = "删除文化")
+    public String deleteById(@RequestParam ("id") int id){
+        int re = iCultureService.deleteById(id);
+        return (re>0)? "Success" : "ERROR";
     }
 }
