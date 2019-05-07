@@ -12,4 +12,10 @@ public interface IDisplayService {
     public Display findDisplayById(int id);
     //查询展览信息下面的图片信息
     public DisplayVM finDisplayPictureById(int id);
+    //添加新的展览通知
+    public int addDisplay(Display display);
+    //更新展览信息
+    public int updateByPrimaryKey(Display display);
+    //删除展览信息
+    public int deleteDisplay(int id);
 }
