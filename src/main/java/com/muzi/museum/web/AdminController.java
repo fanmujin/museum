@@ -74,9 +74,9 @@ public class AdminController {
         return re > 0 ? "SUCCESS" : "ERROR";
     }
     //通过id删除管理员的详细信息
-    @GetMapping("deleteByPrimaryKey/{id}")
+    @DeleteMapping("deleteByPrimaryKey")
     @ApiOperation(value = "通过id删除管理员的详细信息")
-    public String deleteByPrimaryKey(@PathVariable int id){
+    public String deleteByPrimaryKey(@RequestParam("id") int id){
         int re = iAdminService.deleteByPrimaryKey(id);
         return   re > 0 ? "SUCCESS" : "ERROR";
     }
