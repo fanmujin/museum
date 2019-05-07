@@ -42,6 +42,11 @@ public class ICultureServiceImpl implements ICultureService {
         return cultureMapper.selectCultureByName(name);
 
     }
+
+    @Override
+    public int deleteById(int id) {
+        return cultureMapper.deleteByPrimaryKey(id);
+    }
 }
 
 

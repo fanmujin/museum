@@ -14,4 +14,6 @@ public interface ICultureService {
     public Culture findCultureById(int id);
     //通过name查询名俗信息
     public  Culture findCultureByName(String name);
+    //通过id删除名俗信息
+    public int deleteById(int id);
 }
