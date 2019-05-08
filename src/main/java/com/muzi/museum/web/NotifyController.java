@@ -6,8 +6,10 @@ import com.muzi.museum.service.INotifyService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -24,9 +26,9 @@ public class NotifyController {
         return Result.success(list);
     }
     //通过id查询通知消息
-    @GetMapping("findNotifyById/{id}")
+    @GetMapping("findNotifyById")
     @ApiOperation(value = "通过id查询通知消息")
-    public Result findNotifyById(@PathVariable int id){
+    public Result findNotifyById(@RequestParam("id") int id){
         Notify notify = iNotifyService.findNotifyById(id);
         return Result.success(notify);
     }
@@ -40,14 +42,16 @@ public class NotifyController {
     //修改原有的通知消息
     @PostMapping("updateNotifyById")
     @ApiOperation(value = "修改原有的通知消息")
-    public String updateNotifyById(Notify notify){
+    public String updateNotifyById(Notify notify,
+                                   @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") @RequestParam Date creat){
+        notify.setCreateTime(creat);
         int re = iNotifyService.uodateNotifyById(notify);
         return re > 0 ? "SUCCESS" : "ERROR";
     }
     //通过id删除原有的通知
-    @GetMapping("deleteNotifyById/{id}")
+    @GetMapping("deleteNotifyById")
     @ApiOperation(value = "通过id删除原有的消息通知")
-    public String deleteNotifyById(@PathVariable int id){
+    public String deleteNotifyById(@RequestParam("id") int id){
         int re = iNotifyService.deleteNotifyById(id);
         return re > 0 ? "SECCESS" : "ERROR";
     }
