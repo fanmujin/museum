@@ -6,8 +6,10 @@ import com.muzi.museum.service.IDigitalService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -22,5 +24,23 @@ public class DigitalController {
     public Result findByWord(@RequestParam("name") String name){
         List<Digital> list = iDigitalService.findDigitalByPrimaryWord(name);
         return Result.success(list);
+    }
+    //根据ID修改网上展厅的信息
+    @PostMapping("updateById")
+    @ApiOperation(value = "通过ID修改网上展厅的信息")
+    public String updateById(Digital digital,
+                             @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") @RequestParam Date creat,
+                             @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") @RequestParam Date updatee){
+        digital.setCreateTime(creat);
+        digital.setUpdateTime(updatee);
+        int re = iDigitalService.updateByPrimaryKey(digital);
+        return re > 0 ? "SUCCESS" : "ERROR";
+    }
+    //通过id删除网上展厅信息
+    @DeleteMapping("deleteById")
+    @ApiOperation(value = "通过ID删除网上展厅")
+    public String deleteById(@RequestParam("id") int id){
+        int re = iDigitalService.deleteByPrimaryKey(id);
+        return re > 0 ? "SUCCESS" : "ERROR";
     }
 }
