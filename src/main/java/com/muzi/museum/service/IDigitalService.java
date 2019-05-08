@@ -9,6 +9,8 @@ public interface IDigitalService {
     public List<Digital> findDigitalByPrimaryWord(String name);
     //修改网上展厅信息
     public int updateByPrimaryKey(Digital digital);
-    //删除晚上展厅信息
+    //删除网上展厅信息
     public int deleteByPrimaryKey(int id);
+    //新增网上展厅
+    public int addDigital(Digital digital);
 }

@@ -29,4 +29,12 @@ public class IDigitalServiceImpl implements IDigitalService {
     public int deleteByPrimaryKey(int id) {
         return digitalMapper.deleteByPrimaryKey(id);
     }
+
+    @Override
+    public int addDigital(Digital digital) {
+        CurrentTime currentTime = new CurrentTime();
+        digital.setCreateTime(currentTime.getTime());
+        return digitalMapper.insert(digital);
+    }
+
 }

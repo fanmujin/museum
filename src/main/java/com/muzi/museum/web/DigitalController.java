@@ -43,4 +43,11 @@ public class DigitalController {
         int re = iDigitalService.deleteByPrimaryKey(id);
         return re > 0 ? "SUCCESS" : "ERROR";
     }
+    //增加新的网上展厅信息
+    @PostMapping("addDigital")
+    @ApiOperation(value = "添加新的网上展厅")
+    public String addDigital(Digital digital){
+        int re = iDigitalService.addDigital(digital);
+        return re > 0 ? "SUCCESS" : "ERROR";
+    }
 }
