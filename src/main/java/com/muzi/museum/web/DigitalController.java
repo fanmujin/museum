@@ -6,10 +6,7 @@ import com.muzi.museum.service.IDigitalService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,7 +17,7 @@ public class DigitalController {
     @Autowired
     IDigitalService iDigitalService;
     //根据名字模糊查询网上展厅的信息
-    @PatchMapping("findByWord")
+    @GetMapping("findByWord")
     @ApiOperation(value = "通过名字模糊查找展厅信息")
     public Result findByWord(@RequestParam("name") String name){
         List<Digital> list = iDigitalService.findDigitalByPrimaryWord(name);
