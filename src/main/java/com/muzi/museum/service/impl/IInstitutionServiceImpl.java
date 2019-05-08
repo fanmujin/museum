@@ -42,4 +42,11 @@ public class IInstitutionServiceImpl implements IInstitutionService {
     public int deleteById(int id) {
         return institutionsMapper.deleteByPrimaryKey(id);
     }
+    //通过name模糊查询学术报告
+    @Override
+    public List<Institutions> findByName(String name) {
+        return institutionsMapper.selectByPrimaryWord(name);
+    }
+
+
 }

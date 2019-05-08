@@ -14,4 +14,6 @@ public interface IInstitutionService {
     public int updateById(Institutions institutions);
     //删除学术文章
     public int deleteById(int id);
+    //通过name模糊查询学术报告
+    public List<Institutions> findByName(String name);
 }
