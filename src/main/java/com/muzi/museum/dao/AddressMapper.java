@@ -2,6 +2,8 @@ package com.muzi.museum.dao;
 
 import com.muzi.museum.bean.Address;
 
+import java.util.List;
+
 public interface AddressMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,8 @@ public interface AddressMapper {
     int updateByPrimaryKeySelective(Address record);
 
     int updateByPrimaryKey(Address record);
+
+    List<Address> selectByPrimaryWord(String name);
+
+
 }
