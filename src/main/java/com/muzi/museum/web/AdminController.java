@@ -38,7 +38,6 @@ public class AdminController {
         }
         return Result.success(data);
     }
-
     @PostMapping("/doLogin")
     public Result login(@RequestParam("name") String name, @RequestParam("password") String password){
         List<Admin> listAdmin=iAdminService.findAll();
@@ -67,7 +66,7 @@ public class AdminController {
     }
 
     //添加新的管理员的信息
-    @PostMapping("addmanager")
+    @PostMapping("Register")
     @ApiOperation(value = "添加新的管理员的详细信息")
     public String addmanager(Admin admin){
         int re = iAdminService.insert(admin);
