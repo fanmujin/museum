@@ -2,7 +2,7 @@ server:
   port: 8080
 spring:
   mvc:
-     static-path-pattern:/static/**
+    static-path-pattern: classpath:/static/,file:/F:\\video
      # 静态资源访问　默认值为 classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
   thymeleaf:
     prefix: classpath:/templates/
@@ -25,6 +25,11 @@ spring:
     port: 6379
     database: 0
     password:
+  servlet:
+    multipart:
+      enabled: true #开启多个文件上传
+      max-file-size: 10MB
+      max-request-size: 10MB
 mybatis:
   mapper-locations: classpath:mapping/*.xml
   type-aliases-package: com.muzi.museum.bean
@@ -44,6 +49,13 @@ logging: #配置日志文件路径
         xatu.zsl: debug #不同目录下的日志可配置不同级别
         org.springfromework.web: info
         org.hibernate: error
+
+#文件上传
+upload:
+   video-prefix: video
+   video-path: F:\video
+
+
 
 
 
