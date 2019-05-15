@@ -6,12 +6,13 @@
     <result column="video_name" property="videoName" jdbcType="VARCHAR" />
     <result column="video_url" property="videoUrl" jdbcType="VARCHAR" />
     <result column="create_name" property="createName" jdbcType="VARCHAR" />
+    <result column="load_url" property="loadUrl" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, video_name, video_url, create_name
+    id, video_name, video_url, create_name, load_url
   </sql>
 
-  <select id="selectAll" resultMap="BaseResultMap" >
+  <select id="selectAll" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from video
@@ -29,9 +30,9 @@
   </delete>
   <insert id="insert" parameterType="com.muzi.museum.bean.Video" >
     insert into video (id, video_name, video_url, 
-      create_name)
+      create_name, load_url)
     values (#{id,jdbcType=INTEGER}, #{videoName,jdbcType=VARCHAR}, #{videoUrl,jdbcType=VARCHAR}, 
-      #{createName,jdbcType=VARCHAR})
+      #{createName,jdbcType=VARCHAR}, #{loadUrl,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.muzi.museum.bean.Video" >
     insert into video
@@ -48,6 +49,9 @@
       <if test="createName != null" >
         create_name,
       </if>
+      <if test="loadUrl != null" >
+        load_url,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -61,6 +65,9 @@
       </if>
       <if test="createName != null" >
         #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="loadUrl != null" >
+        #{loadUrl,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -76,6 +83,9 @@
       <if test="createName != null" >
         create_name = #{createName,jdbcType=VARCHAR},
       </if>
+      <if test="loadUrl != null" >
+        load_url = #{loadUrl,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -83,7 +93,8 @@
     update video
     set video_name = #{videoName,jdbcType=VARCHAR},
       video_url = #{videoUrl,jdbcType=VARCHAR},
-      create_name = #{createName,jdbcType=VARCHAR}
+      create_name = #{createName,jdbcType=VARCHAR},
+      load_url = #{loadUrl,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

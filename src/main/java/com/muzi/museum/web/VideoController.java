@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.util.Date;
 import java.util.List;
@@ -30,37 +28,40 @@ public class VideoController {
 
     @Autowired
     IVideoService iVideoService;
+
     @GetMapping("findAllVideo")
     @ApiOperation(value = "查询所有的video")
-    public Result findAllVideo(){
+    public Result findAllVideo() {
         List<Video> list = iVideoService.findAll();
         return Result.success(list);
     }
+
     @DeleteMapping("deleteById")
     @ApiOperation(value = "通过id删除video")
-    public String deleteById(@RequestParam("id") int id){
+    public String deleteById(@RequestParam("id") int id) {
         int res = iVideoService.deleteById(id);
-        return (res>0) ? "SUCCESS" : "ERROR";
+        return (res > 0) ? "SUCCESS" : "ERROR";
     }
+
     @PostMapping("addVideo")
     @ApiOperation(value = "添加新的video")
-    public Result addVideo(@RequestParam("file") MultipartFile file){
+    public Result addVideo(@RequestParam("file") MultipartFile file) {
         Result result = new Result();
-        Video video=doSave(file);
-        if(video!=null){
+        Video video = doSave(file);
+        if (video != null) {
             iVideoService.addVideo(video);
             result.setCode(200);
             result.setData(video);
             result.setMsg("上传成功！");
-        }else{
+        } else {
             result.setCode(500);
             result.setMsg("文件为空！");
         }
         return result;
     }
 
-    private Video doSave(MultipartFile file){
-        Video video=null;
+    private Video doSave(MultipartFile file) {
+        Video video = null;
         if (file != null) {
             try {
                 String fileRealName = file.getOriginalFilename();// 获得原始文件名;
@@ -69,35 +70,22 @@ public class VideoController {
                 if (!savedFile.exists()) {
                     savedFile.mkdirs();
                 }
-                String saveName=videoPrefix+"-"+new Date().getTime()+"-"+fileRealName;
-                savedFile = new File(filePath,saveName);
-                Logger.getLogger(this.getClass().getName()).log(Level.INFO,"path:"+savedFile.getAbsolutePath());
+                String saveName = videoPrefix + "-" + new Date().getTime() + "-" + fileRealName;
+                savedFile = new File(filePath, saveName);
+                Logger.getLogger(this.getClass().getName()).log(Level.INFO, "path:" + savedFile.getAbsolutePath());
                 boolean isCreateSuccess = savedFile.createNewFile();
                 if (isCreateSuccess) { // 转存文件
                     file.transferTo(savedFile); // 第一种
                     //FileUtils.copyInputStreamToFile(file.getInputStream(),savedFile); // 第二种
                 }
-                video=new Video();
+                video = new Video();
                 video.setVideoName(fileRealName.replaceAll("[.][^.]+$", ""));
-                video.setVideoUrl("/video/"+saveName);
+                video.setVideoUrl("/video/" + saveName);
+                video.setLoadUrl(savedFile.getAbsolutePath());
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
         return video;
     }
-
-//    private void maybeCreateSaveDirectory(String rapth){
-//        String path=getClass().getResource(rapth).getPath();
-//        File savedFile = new File(path);
-//        if(savedFile.isDirectory()) {
-//            if (!savedFile.exists()) {
-//                savedFile.mkdirs();
-//            }
-//        }else{
-//            savedFile.delete();
-//            savedFile.mkdirs();
-//        }
-//        Logger.getLogger(this.getClass().getName()).log(Level.INFO,"path:"+path);
-//    }
 }
