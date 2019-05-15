@@ -1,9 +1,10 @@
 server:
   port: 8080
 spring:
-  mvc:
-    static-path-pattern: classpath:/static/,file:/F:\\video
-     # 静态资源访问　默认值为 classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
+  #mvc:
+  #  static-path-pattern: /static/**
+    #resoures:
+     # static-location: classpath:/static/,classpath:/META-INF/resources,classpath:/public/ ....
   thymeleaf:
     prefix: classpath:/templates/
   jpa:
@@ -53,7 +54,7 @@ logging: #配置日志文件路径
 #文件上传
 upload:
    video-prefix: video
-   video-path: F:\video
+   video-path: F:\video\
 
 
 
