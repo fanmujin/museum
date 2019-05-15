@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-//@Configuration
+@Configuration
 public class DefaultView implements WebMvcConfigurer {
     protected static final Logger logger = LoggerFactory.getLogger(DefaultView.class);
 
@@ -26,9 +26,8 @@ public class DefaultView implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-       // registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
-        registry.addResourceHandler("/video/**").
-                 addResourceLocations("F:\\video");
+        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
+        registry.addResourceHandler("/video/**").addResourceLocations("file:"+videoPath);
         LoggerFactory.getLogger(this.getClass().getName()).info("file:"+videoPath);
     }
 
