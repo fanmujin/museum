@@ -6,6 +6,7 @@ import com.muzi.museum.service.IVideoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.util.List;
 
 @Service
@@ -20,6 +21,10 @@ public class IVideoServiceImpl implements IVideoService {
 
     @Override
     public int deleteById(int id) {
+        Video video = videoMapper.selectByPrimaryKey(id);
+        String LocalUrl = video.getLoadUrl();
+        File savedFile = new File(LocalUrl);
+        savedFile.delete();
         return videoMapper.deleteByPrimaryKey(id);
     }
 

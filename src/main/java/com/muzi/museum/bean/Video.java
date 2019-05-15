@@ -9,6 +9,8 @@ public class Video {
 
     private String createName;
 
+    private String loadUrl;
+
     public Integer getId() {
         return id;
     }
@@ -39,5 +41,13 @@ public class Video {
 
     public void setCreateName(String createName) {
         this.createName = createName == null ? null : createName.trim();
+    }
+
+    public String getLoadUrl() {
+        return loadUrl;
+    }
+
+    public void setLoadUrl(String loadUrl) {
+        this.loadUrl = loadUrl == null ? null : loadUrl.trim();
     }
 }
