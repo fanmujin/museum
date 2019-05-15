@@ -50,6 +50,7 @@ public class VideoController {
         if(video!=null){
             iVideoService.addVideo(video);
             result.setCode(200);
+            result.setData(video);
             result.setMsg("上传成功！");
         }else{
             result.setCode(500);
@@ -78,7 +79,7 @@ public class VideoController {
                 }
                 video=new Video();
                 video.setVideoName(fileRealName.replaceAll("[.][^.]+$", ""));
-                video.setVideoUrl("/static/video/"+saveName);
+                video.setVideoUrl("/video/"+saveName);
             } catch (Exception e) {
                 e.printStackTrace();
             }
