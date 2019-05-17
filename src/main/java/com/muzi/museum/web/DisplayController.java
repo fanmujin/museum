@@ -6,6 +6,8 @@ import com.muzi.museum.dao.result.Result;
 import com.muzi.museum.service.IDisplayService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
@@ -43,7 +45,7 @@ public class DisplayController {
         DisplayVM displayVM = iDisplayService.finDisplayPictureById(id);
         return displayVM;
     }
-
+    protected static final Logger logger = LoggerFactory.getLogger(AdminController.class);
     //添加新的展览信息
     @PostMapping("addDisplay")
     @ApiOperation(value = "添加新的display")
@@ -53,6 +55,7 @@ public class DisplayController {
         display.setDiapalyStartdate(start);
         display.setDisplayEnddate(end);
         int re = iDisplayService.addDisplay(display);
+        logger.info("diaplay"+display.getDiapalyStartdate());
         return re > 0 ? "SUCCESS" : "ERROR";
     }
 

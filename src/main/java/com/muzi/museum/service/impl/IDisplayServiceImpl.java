@@ -6,6 +6,9 @@ import com.muzi.museum.dao.DisplayMapper;
 import com.muzi.museum.dao.extend.DisplayVMMapper;
 import com.muzi.museum.service.IDisplayService;
 import com.muzi.museum.utils.CurrentTime;
+import com.muzi.museum.web.AdminController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,8 +39,8 @@ public class IDisplayServiceImpl implements IDisplayService {
     public int addDisplay(Display display) {
         CurrentTime currentTime = new CurrentTime();
         display.setCreateTime(currentTime.getTime());
-        return displayMapper.updateByPrimaryKey(display);
-    }
+        return displayMapper.insert(display);
+}
 
     @Override
     public int updateByPrimaryKey(Display display) {

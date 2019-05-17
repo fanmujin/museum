@@ -5,6 +5,7 @@ import com.muzi.museum.dao.result.Result;
 import com.muzi.museum.service.IVideoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ import java.util.logging.Logger;
 @RequestMapping("/Video")
 @Api(tags = "video")
 public class VideoController {
-
+    protected static final org.slf4j.Logger logger = LoggerFactory.getLogger(AdminController.class);
     @Value("${upload.video-path}")
     private String videoPath;
 
@@ -46,6 +47,7 @@ public class VideoController {
     @PostMapping("addVideo")
     @ApiOperation(value = "添加新的video")
     public Result addVideo(@RequestParam("file") MultipartFile file) {
+        logger.info("file"+file);
         Result result = new Result();
         Video video = doSave(file);
         if (video != null) {
