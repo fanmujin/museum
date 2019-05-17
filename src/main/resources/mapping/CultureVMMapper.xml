@@ -38,5 +38,9 @@
         select <include refid="Base_Column_List" />
         from culture
     </select>
-
+    <select id="seleteAllByName" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" />
+        from culture
+        where culture_name like concat('%',#{name},'%')
+    </select>
 </mapper>

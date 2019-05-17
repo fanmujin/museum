@@ -53,7 +53,7 @@ public class Result implements Serializable {
     }
     public static Result failure() {
         Result result = new Result();
-      //  result.setResultCode(ResultCode.);
+        result.setMsg("不存在该记录");
         return result;
     }
 

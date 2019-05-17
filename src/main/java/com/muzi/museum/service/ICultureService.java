@@ -13,7 +13,11 @@ public interface ICultureService {
     //通过id查询名俗信息
     public Culture findCultureById(int id);
     //通过name查询名俗信息
-    public  Culture findCultureByName(String name);
+    public  List<CultureVM> findCultureByName(String name);
     //通过id删除名俗信息
     public int deleteById(int id);
+    //添加新的文化信息
+    public int addCulture(Culture culture);
+    //修改文化信息
+    public int updateCulture(Culture culture);
 }

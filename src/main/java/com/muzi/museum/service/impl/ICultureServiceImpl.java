@@ -5,6 +5,7 @@ import com.muzi.museum.bean.extend.CultureVM;
 import com.muzi.museum.dao.CultureMapper;
 import com.muzi.museum.dao.extend.CultureVMMapper;
 import com.muzi.museum.service.ICultureService;
+import com.muzi.museum.utils.CurrentTime;
 import com.muzi.museum.web.LoginController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,15 +38,23 @@ public class ICultureServiceImpl implements ICultureService {
     }
 
     @Override
-    public Culture findCultureByName(String name) {
-        logger.info("return="+name);
-        return cultureMapper.selectCultureByName(name);
-
+    public List<CultureVM> findCultureByName(String name) {
+        return cultureVMMapper.seleteAllByName(name);
     }
 
     @Override
     public int deleteById(int id) {
         return cultureMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public int addCulture(Culture culture) {
+        return cultureMapper.insert(culture);
+    }
+
+    @Override
+    public int updateCulture(Culture culture) {
+        return cultureMapper.updateByPrimaryKey(culture);
     }
 }
 

@@ -10,8 +10,10 @@ import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -37,20 +39,33 @@ public class CultureController {
     @ApiOperation(value = "通过cultureID查询文化详细信息")
     public Result findCultureById(@RequestParam("id") int id){
         Culture re = iCultureService.findCultureById(id);
-        return Result.success(re);
+        if(re.getId() > 0) {
+            return Result.success(re);
+        }else {
+            return Result.failure();
+        }
     }
-    @GetMapping("findCultureByName/{name}")
+    @GetMapping("findCultureByName")
     @ApiOperation(value = "通过name查询名俗文化")
-    public Result findCultureByName(@PathVariable("name") String name){
+    public Result findCultureByName(@RequestParam("name") String name){
         logger.info(name);
-        Culture re = iCultureService.findCultureByName(name);
-        logger.info("result:"+re);
-        return Result.success(re);
+        List<CultureVM> list = iCultureService.findCultureByName(name);
+        return Result.success(list);
     }
     @PostMapping("saveOrupdateCulture")
     @ApiOperation(value = "添加或修改名俗文化")
-    public String SaveOrUpdate(){
-        return "Success";
+    public String SaveOrUpdate(Culture culture,
+                               @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") @RequestParam Date creat){
+        culture.setCreateTime(creat);
+        int id = culture.getId();
+        if(id > 0){
+            int res = iCultureService.updateCulture(culture);
+            return (res>0)? "SUCCESS" : "ERROR";
+        }
+        else {
+            int res = iCultureService.addCulture(culture);
+            return (res>0)? "SUCCESS" : "ERROR";
+        }
     }
     //通过ID删除Culture
     @DeleteMapping("deleteById")
