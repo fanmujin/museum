@@ -17,6 +17,8 @@ public interface IAdminService {
     public int updateByPrimaryKey(Admin admin);
     //通过管理员的名字查询管理员的详细信息
     public List<Admin> findByName(String name);
+    //通过名字查询管理员的信息
+    public Admin findAdmin(String name);
 
 
 

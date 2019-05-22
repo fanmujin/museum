@@ -56,7 +56,16 @@ public class AdminController {
         }
         return Result.success(data);
     }
-
+    //第二种登录方式
+    @PostMapping("/Login")
+    public Result Login(@RequestParam("name") String name, @RequestParam("password") String password){
+         Admin admin = iAdminService.findAdmin(name);
+        if(admin.getAdminName().equals(name)&&admin.getAdminPassword().equals(password)){
+            return Result.success(admin);
+        }else {
+            return Result.failure();
+        }
+    }
     //查找出所有的管理员的详细信息
     @GetMapping("findAllmanager")
     @ApiOperation("查找所有的管理员")

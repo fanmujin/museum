@@ -23,7 +23,11 @@
     <include refid="Base_Column_List"/>
     from admin
   </select>
-
+  <select id="selectAdmin" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List"/>
+    from admin  where admin_name = #{name}
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

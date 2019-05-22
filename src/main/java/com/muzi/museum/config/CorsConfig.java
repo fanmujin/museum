@@ -4,10 +4,16 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+
 /**
- * @author suntongxin
- * Create on 2017年7月6日下午8:05:19
- * All right reserved
+ * Package:com.muzi.museum.config
+ * Description:允许跨域访问config
+ * Author:MUZI
+ * Date:Create int 2019/5/19 8:33
+ * Company:帆行
+ * Copyright:Copyright(c)2019
+ * Version：1.0.0
+ * Modified By:MUZI
  */
 @Configuration
 public class CorsConfig {
